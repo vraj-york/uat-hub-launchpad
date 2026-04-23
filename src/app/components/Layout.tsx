@@ -3,6 +3,7 @@ import {
   Users, FileText, FolderOpen, CheckSquare, Calendar,
   Bell, HelpCircle, Zap, ChevronDown, Settings, Mic, Bot
 } from 'lucide-react';
+import clientLinkLogo from '@/assets/images/client-link-48-a5ea1ca7.png';
 
 const navItems = [
   { label: 'Clients', icon: Users, path: '/clients' },
@@ -53,9 +54,13 @@ export default function Layout() {
         <div className="px-3 py-2 border-b border-[#E5E7EB] flex-shrink-0">
           <button className="w-full flex items-center justify-between px-2 py-1.5 rounded hover:bg-[#EEEFF1] transition-colors group">
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded bg-[#7C3AED] flex items-center justify-center">
-                <span className="text-[9px] text-white font-bold">KF</span>
-              </div>
+              <img
+                src={clientLinkLogo}
+                alt=""
+                className="h-5 w-5 object-contain flex-shrink-0 rounded"
+                width={20}
+                height={20}
+              />
               <span className="text-[12px] font-medium text-[#374151]">Kessler & Flynn CPA</span>
             </div>
             <ChevronDown size={12} className="text-[#9CA3AF]" />
