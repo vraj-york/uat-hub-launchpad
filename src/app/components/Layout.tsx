@@ -1,4 +1,4 @@
-import { Outlet, NavLink, useLocation } from 'react-router';
+import { Outlet, NavLink, Link, useLocation } from 'react-router';
 import {
   Users, FileText, FolderOpen, CheckSquare, Calendar,
   Bell, HelpCircle, Zap, ChevronDown, Settings, Mic, Bot
@@ -17,6 +17,7 @@ const navItems = [
 
 const bottomNavItems = [
   { label: 'Notifications', icon: Bell, path: '/notifications', badge: 3 },
+  { label: 'Settings', icon: Settings, path: '/settings' },
   { label: 'Help & Support', icon: HelpCircle, path: '/help' },
 ];
 
@@ -124,14 +125,25 @@ export default function Layout() {
 
         {/* User section */}
         <div className="border-t border-[#E5E7EB] p-3 flex-shrink-0">
-          <button className="w-full flex items-center gap-2.5 px-2 py-1.5 rounded hover:bg-[#EEEFF1] transition-colors">
-            <Avatar initials="SK" color="#3B82F6" size="md" />
-            <div className="flex-1 text-left min-w-0">
-              <div className="text-[12px] font-medium text-[#111827] truncate">Sarah Kim</div>
-              <div className="text-[11px] text-[#9CA3AF] truncate">sarah.kim@firmname.com</div>
-            </div>
-            <Settings size={13} className="text-[#9CA3AF] flex-shrink-0" />
-          </button>
+          <div className="w-full flex items-center gap-2.5 px-2 py-1.5 rounded hover:bg-[#EEEFF1] transition-colors">
+            <button type="button" className="flex flex-1 items-center gap-2.5 min-w-0 text-left">
+              <Avatar initials="SK" color="#3B82F6" size="md" />
+              <div className="flex-1 text-left min-w-0">
+                <div className="text-[12px] font-medium text-[#111827] truncate">Sarah Kim</div>
+                <div className="text-[11px] text-[#9CA3AF] truncate">sarah.kim@firmname.com</div>
+              </div>
+            </button>
+            <Link
+              to="/settings"
+              title="Settings"
+              className={`p-1 rounded hover:bg-[#E5E7EB] transition-colors flex-shrink-0 ${
+                location.pathname === '/settings' ? 'text-[#2563EB]' : 'text-[#9CA3AF]'
+              }`}
+              aria-current={location.pathname === '/settings' ? 'page' : undefined}
+            >
+              <Settings size={13} />
+            </Link>
+          </div>
         </div>
       </aside>
 

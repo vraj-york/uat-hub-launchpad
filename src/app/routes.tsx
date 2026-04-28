@@ -12,6 +12,7 @@ import AINotetakerSettings from './components/pages/AINotetakerSettings';
 import SuggestionReviewPage from './components/pages/SuggestionReviewPage';
 import MeetingDetailPage from './components/pages/MeetingDetailPage';
 import AIAgentsHub from './components/pages/AIAgentsHub';
+import SettingsPage from './components/pages/SettingsPage';
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: 'tasks', Component: TasksPage },
       { path: 'planning', Component: PlanningPage },
       { path: 'notifications', Component: NotificationsPage },
+      { path: 'settings', Component: SettingsPage },
       { path: 'help', Component: HelpPage },
       {
         path: 'ai-notetaker',
