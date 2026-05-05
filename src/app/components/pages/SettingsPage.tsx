@@ -10,6 +10,8 @@ const SETTINGS_SECTIONS = [
     title: 'AI Notetaker',
     description:
       'Bot identity, meeting platforms, summary emails, and default behaviors for calls and suggestions.',
+    linkClassName:
+      'bg-red-500 border-red-600 hover:bg-red-600 hover:border-red-700 [&_h2]:!text-white [&_p]:!text-red-100 [&>svg]:!text-red-200 group-hover:[&>svg]:!text-white',
   },
   {
     to: '/notifications',
@@ -42,7 +44,9 @@ export default function SettingsPage() {
                 <Link
                   key={section.to}
                   to={section.to}
-                  className="group flex items-start gap-4 p-4 border border-[#E5E7EB] rounded-xl hover:border-[#D1D5DB] hover:bg-[#FAFAFA] transition-all text-left"
+                  className={`group flex items-start gap-4 p-4 border border-[#E5E7EB] rounded-xl hover:border-[#D1D5DB] hover:bg-[#FAFAFA] transition-all text-left ${
+                    section.linkClassName ?? ''
+                  }`}
                 >
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
