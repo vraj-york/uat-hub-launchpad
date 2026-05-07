@@ -1,11 +1,18 @@
-import { Outlet, NavLink, useLocation } from 'react-router';
+import { Outlet, NavLink, Link, useLocation } from 'react-router';
+import type { LucideIcon } from 'lucide-react';
 import {
-  Users, FileText, FolderOpen, CheckSquare, Calendar,
+  FileText, FolderOpen, CheckSquare, Calendar,
   Bell, HelpCircle, Zap, ChevronDown, Settings, Mic, Bot
 } from 'lucide-react';
+import clientLinkLogo from '@/assets/images/client-link-48-a5ea1ca7.png';
+import clientsNavIcon from '@/assets/images/client-link-73-b218e101.svg';
 
-const navItems = [
-  { label: 'Clients', icon: Users, path: '/clients' },
+type MainNavItem =
+  | { label: string; path: string; badge?: string; indigo?: boolean; icon: LucideIcon }
+  | { label: string; path: string; badge?: string; indigo?: boolean; iconSrc: string };
+
+const navItems: MainNavItem[] = [
+  { label: 'Clients', iconSrc: clientsNavIcon, path: '/clients' },
   { label: 'Templates', icon: FileText, path: '/templates' },
   { label: 'Projects', icon: FolderOpen, path: '/projects' },
   { label: 'Tasks', icon: CheckSquare, path: '/tasks' },
@@ -16,6 +23,7 @@ const navItems = [
 
 const bottomNavItems = [
   { label: 'Notifications', icon: Bell, path: '/notifications', badge: 3 },
+  { label: 'Settings', icon: Settings, path: '/settings' },
   { label: 'Help & Support', icon: HelpCircle, path: '/help' },
 ];
 
@@ -53,9 +61,13 @@ export default function Layout() {
         <div className="px-3 py-2 border-b border-[#E5E7EB] flex-shrink-0">
           <button className="w-full flex items-center justify-between px-2 py-1.5 rounded hover:bg-[#EEEFF1] transition-colors group">
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded bg-[#7C3AED] flex items-center justify-center">
-                <span className="text-[9px] text-white font-bold">KF</span>
-              </div>
+              <img
+                src={clientLinkLogo}
+                alt=""
+                className="h-5 w-5 object-contain flex-shrink-0 rounded"
+                width={20}
+                height={20}
+              />
               <span className="text-[12px] font-medium text-[#374151]">Kessler & Flynn CPA</span>
             </div>
             <ChevronDown size={12} className="text-[#9CA3AF]" />
@@ -65,8 +77,10 @@ export default function Layout() {
         {/* Main nav */}
         <nav className="flex-1 px-2 py-3 overflow-y-auto">
           <div className="space-y-0.5">
-            {navItems.map(({ label, icon: Icon, path, badge, indigo }) => {
+            {navItems.map((item) => {
+              const { label, path, badge, indigo } = item;
               const isActive = location.pathname === path || location.pathname.startsWith(path + '/') || (path === '/projects' && location.pathname === '/');
+              const NavIcon = 'icon' in item ? item.icon : null;
               return (
                 <NavLink
                   key={path}
@@ -77,7 +91,17 @@ export default function Layout() {
                       : 'text-[#374151] hover:bg-[#EEEFF1] font-normal border-l-2 border-transparent pl-[10px]'
                   }`}
                 >
-                  <Icon size={15} className={isActive ? 'text-[#2563EB]' : 'text-[#6B7280]'} />
+                  {NavIcon ? (
+                    <NavIcon size={15} className={isActive ? 'text-[#2563EB]' : 'text-[#6B7280]'} />
+                  ) : (
+                    <img
+                      src={item.iconSrc}
+                      alt=""
+                      className="h-[15px] w-[15px] object-contain flex-shrink-0"
+                      width={15}
+                      height={15}
+                    />
+                  )}
                   <span className="flex-1">{label}</span>
                   {badge && !isActive && (
                     <span className={`text-white text-[9px] font-bold rounded-full px-1.5 py-0.5 leading-none ${indigo ? 'bg-[#4F46E5]' : 'bg-gradient-to-r from-[#2563EB] to-[#7C3AED]'}`}>
@@ -119,14 +143,25 @@ export default function Layout() {
 
         {/* User section */}
         <div className="border-t border-[#E5E7EB] p-3 flex-shrink-0">
-          <button className="w-full flex items-center gap-2.5 px-2 py-1.5 rounded hover:bg-[#EEEFF1] transition-colors">
-            <Avatar initials="SK" color="#3B82F6" size="md" />
-            <div className="flex-1 text-left min-w-0">
-              <div className="text-[12px] font-medium text-[#111827] truncate">Sarah Kim</div>
-              <div className="text-[11px] text-[#9CA3AF] truncate">sarah.kim@firmname.com</div>
-            </div>
-            <Settings size={13} className="text-[#9CA3AF] flex-shrink-0" />
-          </button>
+          <div className="w-full flex items-center gap-2.5 px-2 py-1.5 rounded hover:bg-[#EEEFF1] transition-colors">
+            <button type="button" className="flex flex-1 items-center gap-2.5 min-w-0 text-left">
+              <Avatar initials="SK" color="#3B82F6" size="md" />
+              <div className="flex-1 text-left min-w-0">
+                <div className="text-[12px] font-medium text-[#111827] truncate">Sarah Kim</div>
+                <div className="text-[11px] text-[#9CA3AF] truncate">sarah.kim@firmname.com</div>
+              </div>
+            </button>
+            <Link
+              to="/settings"
+              title="Settings"
+              className={`p-1 rounded hover:bg-[#E5E7EB] transition-colors flex-shrink-0 ${
+                location.pathname === '/settings' ? 'text-[#2563EB]' : 'text-[#9CA3AF]'
+              }`}
+              aria-current={location.pathname === '/settings' ? 'page' : undefined}
+            >
+              <Settings size={13} />
+            </Link>
+          </div>
         </div>
       </aside>
 

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="203" height="36" viewBox="-48 -48 96 96">
+  <rect x="-48" y="-48" width="96" height="96" rx="16" fill="#2563eb">
+    <animate attributeName="fill" values="#2563eb;#1d4ed8;#2563eb" dur="4s" repeatCount="indefinite"/>
+  </rect>
+  <circle cx="0" cy="0" r="24" fill="#e0e7ff" stroke="#93c5fd" stroke-width="2">
+    <animate attributeName="r" values="24;26;24" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#93c5fd;#60a5fa;#93c5fd" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="0" cy="-8" r="6" fill="#2563eb">
+    <animate attributeName="cy" values="-8;-10;-8" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="fill" values="#2563eb;#1e40af;#2563eb" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <path d="M-8 4 L8 4 Q12 4 12 8 L12 16 Q12 20 8 20 L-8 20 Q-12 20 -12 16 L-12 8 Q-12 4 -8 4 Z" fill="#2563eb">
+    <animate attributeName="fill" values="#2563eb;#1e40af;#2563eb" dur="3.5s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="4s" repeatCount="indefinite"/>
+  </path>
+  <rect x="-4" y="8" width="8" height="8" fill="#e0e7ff">
+    <animate attributeName="fill" values="#e0e7ff;#c7d2fe;#e0e7ff" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="width" values="8;10;8" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="8;10;8" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="x" values="-4;-5;-4" dur="3s" repeatCount="indefinite"/>
+  </rect>
+  <animateTransform attributeName="transform" type="rotate" values="0;360" dur="12s" repeatCount="indefinite"/>
+</svg>
